@@ -1,0 +1,27 @@
+server: 
+  port: 8080
+  servlet:
+    context-path: /login202403/be/v0.1
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/login202403_db
+    username: login202403_db
+    password: login202403_db
+    hikari:
+      maximum-lifetime: 300000
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQLDialect
+      ddl-auto: none #none create-drop update
+    generate-ddl: true
+    show-sql: true
+    
+logging:
+  level:
+    org:
+      springframework:
+        web: INFO
