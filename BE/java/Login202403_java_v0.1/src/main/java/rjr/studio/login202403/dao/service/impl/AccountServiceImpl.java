@@ -1,7 +1,6 @@
 package rjr.studio.login202403.dao.service.impl;
 
-import java.util.Optional;
-
+import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +22,8 @@ public class AccountServiceImpl extends BaseCrudService<AccountEntity, Integer> 
 	}
 
 	@Override
-	public Optional<AccountEntity> findByUsername(String username) {
-		return accountRepository.findByUsername(username);
+	public AccountEntity findByUsername(String username) {
+		return accountRepository.findByUsername(username).orElseThrow(() -> new NoSuchElementException(AccountEntity.class.getSimpleName()+" USERNAME "+username+" not found"));
 	}
 
 }
