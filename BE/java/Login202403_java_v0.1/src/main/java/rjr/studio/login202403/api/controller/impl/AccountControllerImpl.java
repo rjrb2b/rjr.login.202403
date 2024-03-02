@@ -9,17 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import rjr.studio.login202403.api.controller.AccountController;
 import rjr.studio.login202403.api.view.ApiViewUtility;
+import rjr.studio.login202403.api.view.LoginCredentials;
 import rjr.studio.login202403.api.view.ResponseBody;
-import rjr.studio.login202403.business.impl.AccountBusinessImpl;
+import rjr.studio.login202403.business.AccountBusiness;
 import rjr.studio.login202403.dao.entity.AccountEntity;
 
 @RestController
 public class AccountControllerImpl implements AccountController {
 
-	private AccountBusinessImpl accountBusiness;
+	private AccountBusiness accountBusiness;
 
 	@Autowired
-	public AccountControllerImpl(AccountBusinessImpl accountBusiness) {
+	public AccountControllerImpl(AccountBusiness accountBusiness) {
 		this.accountBusiness = accountBusiness;
 	}
 
@@ -44,17 +45,25 @@ public class AccountControllerImpl implements AccountController {
 	public ResponseEntity<ResponseBody<Integer>> save(AccountEntity accountEntity) {
 
 		Integer rtn = accountBusiness.save(accountEntity).getId();
-		
+
 		return ApiViewUtility.responseSuccessBuilder(Arrays.asList(rtn), AccountEntity._TYPE);
-		
+
 	}
 
 	@Override
 	public ResponseEntity<ResponseBody<Integer>> deleteById(Integer accountId) {
-		
+
 		accountBusiness.deleteById(AccountEntity.class, accountId);
-		
+
 		return ApiViewUtility.responseSuccessBuilder(Arrays.asList(accountId), AccountEntity._TYPE);
+	}
+
+	@Override
+	public ResponseEntity<ResponseBody<Boolean>> login(LoginCredentials loginCredentials) {
+
+		Boolean rtn = accountBusiness.login(loginCredentials);
+
+		return ApiViewUtility.responseSuccessBuilder(Arrays.asList(rtn), "Boolean");
 	}
 
 }
