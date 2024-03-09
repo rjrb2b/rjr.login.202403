@@ -17,8 +17,8 @@ spring:
     hibernate:
       dialect: org.hibernate.dialect.MySQLDialect
       ddl-auto: none #none create-drop update
-    generate-ddl: true
-    show-sql: true
+    generate-ddl: false
+    show-sql: false
     
 logging:
   level:
