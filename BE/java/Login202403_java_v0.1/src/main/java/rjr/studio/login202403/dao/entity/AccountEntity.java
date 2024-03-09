@@ -1,12 +1,18 @@
 package rjr.studio.login202403.dao.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import rjr.studio.login202403.dao.entity.type.TypeRoleEntity;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -28,8 +34,12 @@ public class AccountEntity extends BaseEntity {
 	@Column(name = "PASSWORD", nullable = false, length = 255)
 	@Size(min = 8, message = "The password length must be at least 8 characters")
 	private String password;
-	@Column(name = "ROLE", nullable = false, length = 255)
-	@Size(min = 2, message = "The role length must be at least 2 characters")
-	private String role;
+	@ManyToMany
+    @JoinTable(
+        name = "ACCOUNTS_ROLES",
+        joinColumns = @JoinColumn(name = "ACCOUNT_ID"),
+        inverseJoinColumns = @JoinColumn(name = "ROLE_CODE")
+    )
+    private Set<TypeRoleEntity> roles;
 
 }
