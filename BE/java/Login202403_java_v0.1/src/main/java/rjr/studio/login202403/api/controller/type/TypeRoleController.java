@@ -13,7 +13,7 @@ import rjr.studio.login202403.api.view.ResponseBody;
 import rjr.studio.login202403.dao.entity.type.TypeRoleEntity;
 
 @RequestMapping(value = "/types/role")
-public interface TypesRoleController {
+public interface TypeRoleController {
 	
 	@GetMapping(value = "", produces =  MediaType.APPLICATION_JSON_VALUE)
 	@Operation(summary = "Find all types role", description = "Retrieves all types role")

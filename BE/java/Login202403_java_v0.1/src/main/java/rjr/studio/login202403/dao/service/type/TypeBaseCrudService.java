@@ -7,14 +7,14 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import rjr.studio.login202403.dao.entity.type.TypeBaseEntity;
-import rjr.studio.login202403.dao.repository.type.TypesBaseRepository;
+import rjr.studio.login202403.dao.repository.type.TypeBaseRepository;
 
-public abstract class TypesBaseCrudService<E extends TypeBaseEntity, CODE extends Serializable> {
+public abstract class TypeBaseCrudService<E extends TypeBaseEntity, CODE extends Serializable> {
 	
-	private TypesBaseRepository<E, CODE> repo;
+	private TypeBaseRepository<E, CODE> repo;
 	
 	@Autowired
-	protected TypesBaseCrudService(TypesBaseRepository<E, CODE> repo) {
+	protected TypeBaseCrudService(TypeBaseRepository<E, CODE> repo) {
 		this.repo = repo;
 	}
 	

@@ -1,6 +1,5 @@
 package rjr.studio.login202403.api.controller.impl;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,26 +26,26 @@ public class AccountControllerImpl implements AccountController {
 	@Override
 	public ResponseEntity<ResponseBody<AccountEntity>> findAll() {
 
-		List<AccountEntity> rtn = accountBusiness.findAll();
+		List<AccountEntity> elements = accountBusiness.findAll();
 
-		return ApiViewUtility.responseSuccessBuilder(rtn, AccountEntity._TYPE);
+		return ApiViewUtility.responseSuccessBuilder(elements, AccountEntity._TYPE);
 
 	}
 
 	@Override
 	public ResponseEntity<ResponseBody<AccountEntity>> findById(Integer accountId) {
 
-		AccountEntity rtn = accountBusiness.findById(AccountEntity.class, accountId);
+		AccountEntity element = accountBusiness.findById(AccountEntity.class, accountId);
 
-		return ApiViewUtility.responseSuccessBuilder(Arrays.asList(rtn), AccountEntity._TYPE);
+		return ApiViewUtility.responseSuccessBuilder(element, AccountEntity._TYPE);
 	}
 
 	@Override
 	public ResponseEntity<ResponseBody<Integer>> save(AccountEntity accountEntity) {
 
-		Integer rtn = accountBusiness.save(accountEntity).getId();
+		Integer id = accountBusiness.save(accountEntity).getId();
 
-		return ApiViewUtility.responseSuccessBuilder(Arrays.asList(rtn), AccountEntity._TYPE);
+		return ApiViewUtility.responseSuccessBuilder(id, AccountEntity._TYPE);
 
 	}
 
@@ -55,15 +54,15 @@ public class AccountControllerImpl implements AccountController {
 
 		accountBusiness.deleteById(AccountEntity.class, accountId);
 
-		return ApiViewUtility.responseSuccessBuilder(Arrays.asList(accountId), AccountEntity._TYPE);
+		return ApiViewUtility.responseSuccessBuilder(accountId, AccountEntity._TYPE);
 	}
 
 	@Override
 	public ResponseEntity<ResponseBody<Boolean>> login(LoginCredentials loginCredentials) {
 
-		Boolean rtn = accountBusiness.login(loginCredentials);
+		Boolean login = accountBusiness.login(loginCredentials);
 
-		return ApiViewUtility.responseSuccessBuilder(Arrays.asList(rtn), "Boolean");
+		return ApiViewUtility.responseSuccessBuilder(login, "Boolean");
 	}
 
 }
